@@ -1,0 +1,25 @@
+主要的WebSocket 通信方法：
+(1) 当客户端与服务器端连接时触发事件
+s.onopen = function(event){}。
+(2) 客户端接受到服务器端发送的数据
+s.onmessage = function(event){}。
+(3) 客户端关闭
+s.onclose = function(event){}。
+(4) 客户端发送数据到服务器端
+s.send()。
+WebSocket Server
+---------------------------------
+基础类模块ClassBase、游戏主函数模块ClassGame、地图模块ClassMap、游戏坦克模块ClassTank和声音控制模块ClassSound。
+①base 模块中有loadImage 方法，该方法可以读取图片，并且在图片加载完成后，异步调用传入的其他方法。
+②ClassGame 模块是整个游戏运行的主逻辑住调用的类，
+其中有
+主入口函数init()、当服务器器打开时触发方法onopen()、接收数据方法onmessage()、
+键盘事件控制方法control()、游戏开始start()和游戏总的时间触发器move()。
+③ClassMap模块是地图相关方法模块，其中主要有
+清除某一位置地图方法clean()、清除所有地图方法cleanAll()、绘制某一位置地图方法draw()、绘制全部位置地图方法drawAll()、
+取得某位置z-index 数值方法getZindex()、检测指定位置是什么地形checkMap()和是否能够通过checkCanGo()。
+④ClassTank 是玩家控制的Tank 的主要方法的类，其中有生成新坦克的birth
+方法、取得下一步的方法getNextStep()、取下一步的地图getNextStepMap()、检查是否能够通过checkTankCanGo()
+转向changeDirection()、清除坦克clearTank()、移动go()和绘制坦克drawTank()等方法。
+⑤ClassSound 方法是声音控制类，其中有基本的声音控制方法，播放声音
+play()和暂停播放pause()等方法。

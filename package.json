@@ -1,0 +1,9 @@
+{
+ "name":"TankWar",
+  "version":"0.0.1",
+  "dependencies":{
+      "express":""
+	 ,"mime":""
+	 ,"socket.io":""
+  }
+}

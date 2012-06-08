@@ -34,6 +34,16 @@ app.get('/css/default.css',function(req,res){
     res.writeHead(200,{'Content-Type':mime.lookup(realpath)});
     res.end(fs.readFileSync(realpath));
 });
+app.get('/favicon.ico',function(req,res){
+    var realpath = __dirname + '/favicon.ico';
+    res.writeHead(200,{'Content-Type':mime.lookup(realpath)});
+    res.end(fs.readFileSync(realpath));
+});
+app.get('/apple-touch-icon.png',function(req,res){
+    var realpath = __dirname + '/apple-touch-icon.png';
+    res.writeHead(200,{'Content-Type':mime.lookup(realpath)});
+    res.end(fs.readFileSync(realpath));
+});
 app.get('/TankManager.js',function(req,res){
     var realpath = __dirname + '/TankManager.js';
     res.writeHead(200,{'Content-Type':mime.lookup(realpath)});

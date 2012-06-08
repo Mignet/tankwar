@@ -51,7 +51,7 @@ Tank.prototype.draw = function(ctx) {
 		ctx.translate(-54, -54);
 		//绘制坦克
 		ctx.drawImage(this.image, 0, 0);
-		ctx.fillText('Tank:'+this.uuid+',Im '+this.good,0,0);
+		ctx.fillText('    【'+this.uuid+'】',0,0);
 		//平移
 		ctx.translate(54, 54);
 		//恢复旋转
@@ -69,6 +69,8 @@ Tank.prototype.draw = function(ctx) {
 		ctx.translate(-this.x, -this.y);
 		this.move();
 		//tank move at every ticks
+		var data = {uuid:myTank.uuid,x:myTank.x,y:myTank.y,dir:myTank.dir,ptDir:myTank.ptDir};
+		socket.emit('tank move',data);
 	} else {
 		tanks.remove(this);
 	}
@@ -147,6 +149,8 @@ function Background(x, y) {
 	this.y = y;
 	this.image = new Image();
 	this.image.src = 'images/background.jpg';
+	//this.width = 800;
+	//this.height = 600;
 };
 
 //定义地图元素
@@ -374,7 +378,7 @@ function paint(ctx) {
 			bullets.remove(b);
 			tanks.remove(myTank);
 			myTank.live = false;
-			var e = new Explode(this.x, this.y);
+			var e = new Explode(b.x, b.y);
 			explodes.push(e);
 			var data = {uuid:myTank.uuid};
 			socket.emit('tank dead',data);
@@ -444,8 +448,8 @@ function directTo(e) {
 		return;
 	if(myTank.live) {
 		myTank.ptDir = 180 * (Math.atan2(mousePos(e).y - myTank.y, mousePos(e).x - myTank.x)) / Math.PI + 90;
-		var data = {uuid:myTank.uuid,x:myTank.x,y:myTank.y,dir:myTank.dir,ptDir:myTank.ptDir};
-		socket.emit('tank move',data);
+		//var data = {uuid:myTank.uuid,x:myTank.x,y:myTank.y,dir:myTank.dir,ptDir:myTank.ptDir};
+		//socket.emit('tank move',data);
 	}
 }
 
@@ -474,8 +478,8 @@ Tank.prototype.move = function() {
 			}
 		}
 		if(down) {
-			if(Bg.y >= Bg.height - screenHeight) {
-				Bg.y = Bg.height - screenHeight;
+			if(Bg.y >= Bg.image.height - screenHeight) {
+				Bg.y = Bg.image.height - screenHeight;
 				if(this.y < screenHeight) {
 					this.x -= Math.abs(speed * Math.sin(this.dir * Math.PI / 180));
 					this.y += Math.abs(speed * Math.cos(this.dir * Math.PI / 180));
@@ -508,8 +512,8 @@ Tank.prototype.move = function() {
 			}
 		}
 		if(right) {
-			if(Bg.x >= Bg.width - screenWidth) {
-				Bg.x = Bg.width - screenWidth;
+			if(Bg.x >= Bg.image.width - screenWidth) {
+				Bg.x = Bg.image.width - screenWidth;
 				if(this.x < screenWidth) {
 					this.x += Math.abs(speed * Math.sin(this.dir * Math.PI / 180));
 					this.y -= Math.abs(speed * Math.cos(this.dir * Math.PI / 180));
@@ -653,7 +657,4 @@ function doKeyDown(evt) {
 			right = true;
 			break;
 	}
-	//tank move
-	var data = {uuid:myTank.uuid,x:myTank.x,y:myTank.y,dir:myTank.dir,ptDir:myTank.ptDir};
-	socket.emit('tank move',data);
 }

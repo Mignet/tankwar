@@ -119,6 +119,16 @@ app.get('/images/Meed.png',function(req,res){
     res.writeHead(200,{'Content-Type':mime.lookup(realpath)});
     res.end(fs.readFileSync(realpath));
 });
+app.get('images/button.png',function(req,res){
+    var realpath = __dirname + '/images/button.png';
+    res.writeHead(200,{'Content-Type':mime.lookup(realpath)});
+    res.end(fs.readFileSync(realpath));
+});
+app.get('images/button_clicked.png',function(req,res){
+    var realpath = __dirname + '/images/button_clicked.png';
+    res.writeHead(200,{'Content-Type':mime.lookup(realpath)});
+    res.end(fs.readFileSync(realpath));
+});
 var uuid = 1000;
 var getCurrTime = function(){
     var d  = new Date();

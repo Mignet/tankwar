@@ -77,8 +77,17 @@ body {
     text-shadow: rgba(0,0,0,0.6) 0px -1px 0px;
     line-height: 28px;
     border-width: 0 8px 0 8px;
-    -webkit-border-image: url(images/button.png) 0 8 0 8;
+    -webkit-border-image: url(../images/button.png) 0 8 0 8;
 }
 #header div.pressed {
-    -webkit-border-image: url(images/button_clicked.png) 0 8 0 8;
+    -webkit-border-image: url(../images/button_clicked.png) 0 8 0 8;
+}
+#butt_send{
+	font-weight: bold;
+    text-align: center;
+    color: white;
+    text-shadow: rgba(0,0,0,0.6) 0px -1px 0px;
+    line-height: 28px;
+    border-width: 0 8px 0 8px;
+	-webkit-border-image: url(../images/button.png) 0 8 0 8;
 }

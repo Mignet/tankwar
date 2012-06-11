@@ -271,7 +271,10 @@ socket.on('bullet dead',function(data){
 $(document).ready(function() {
 
 	$('#butt_send').click(function() {
-		socket.emit('msg', $('#message').val());
+		if($('#message').val()!=''){
+			socket.emit('msg', $('#message').val());
+			$('#message').val();
+		}
 	});
 	//连接到服务器
 	socket.emit('login', 'v5Gamer');
@@ -549,6 +552,10 @@ Tank.prototype.move = function() {
 }
 //事件处理-只控制方向
 function doKeyDown(evt) {
+	if (evt.keyCode == 13)	//Enter -- x0D
+	{
+		$('#butt_send').click();
+	}
 	if(myTank == null || myTank == undefined)
 		return;
 	switch (evt.keyCode) {

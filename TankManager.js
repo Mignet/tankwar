@@ -273,7 +273,7 @@ $(document).ready(function() {
 	$('#butt_send').click(function() {
 		if($('#message').val()!=''){
 			socket.emit('msg', $('#message').val());
-			$('#message').val();
+			$('#message').val('');
 		}
 	});
 	//连接到服务器
@@ -289,8 +289,18 @@ $(document).ready(function() {
 	window.addEventListener('keyup', doKeyUp, true);
 	window.addEventListener('mouseup', doMouseUp, true);
 	window.addEventListener('mousemove', directTo, true);
+	
+	var touchable = 'createTouch' in document;
+	
 	// Getting canvas and context
 	var canvas = document.getElementById("container");
+	//touch device
+	if(touchable) {
+		canvas.addEventListener( 'touchstart', onTouchStart, false );
+		canvas.addEventListener( 'touchmove', onTouchMove, false );
+		canvas.addEventListener( 'touchend', onTouchEnd, false );
+	}
+	
 	ctx = canvas.getContext('2d');
 	stats = document.getElementById("stats");
 
@@ -304,6 +314,19 @@ $(document).ready(function() {
 	// First render
 	renderingLoop();
 });
+
+function onTouchStart(event) {
+	//do stuff
+}
+ 
+function onTouchMove(event) {
+	 // Prevent the browser from doing its default thing (scroll, zoom)
+	event.preventDefault(); 
+} 
+ 
+function onTouchEnd(event) { 
+	//do stuff
+}
 
 function mousePos(event) {
 	var px, py;

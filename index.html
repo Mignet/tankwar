@@ -14,25 +14,27 @@
 		<link href="css/default.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="/jquery.min.js"></script>
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-		<script>
-		</script>
 		<script type="text/javascript" src="/TankManager.js"></script>
 	</head>
 	<body>
-		<div id="stats"></div>
+		<div id="stats" style="position:absolute;top:0px;left:770px"></div>
 		<table>
 			<tr><td>
 			<canvas id="container" width="800" height="600">This text is displayed if your browser does not support HTML5 Canvas.</canvas>
 			</td>
-		<td>
-			<div id='demo' style="boder:1px;border-style:dotted;width:400px;height:560px;overflow:auto;">
-			<span>...</span>
-			</div> 
-			message: <input type="text" id='message' value=""/>
-			<input type="button" value="send" id="butt_send"/>
-		</td>
 		</tr>
 		</table>
+		<div style="position:absolute;top:500px;left:0px">
+			<div id='demo' style="boder:1px;border-style:dotted;width:400px;height:100px;overflow:auto;">
+			<span>...</span>
+			</div> 
+			<table>
+				<tr>
+					<td>message: <input type="text" id='message' value="" size="30"/></td>
+					<td><input type="button" value="send" id="butt_send"/></td>
+				</tr>
+			</table>
+		</div>
 	</body>
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];

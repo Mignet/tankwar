@@ -149,9 +149,9 @@ io.sockets.on('connection', function (socket) {
      socket.emit('msg',data);
      //socket.emit('msg',data);
      if(uuid%2==0){
-	     data = {uuid:uuid,x:200,y:200,dir:180,ptDir:0,good:true};
+	     data = {uuid:uuid,x:200+Math.random()*100<<0,y:200+Math.random()*100<<0,dir:180,ptDir:0,good:true};
      }else{
-	     data = {uuid:uuid,x:200,y:400,dir:0,ptDir:0,good:false};
+	     data = {uuid:uuid,x:200+Math.random()*100<<0,y:400+Math.random()*100<<0,dir:0,ptDir:0,good:false};
      }
      console.log('new Tank '+username+'('+socket.name+') in...')
      socket.emit('new tank',data);

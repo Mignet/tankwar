@@ -9,7 +9,7 @@ if(process.env.VMC_APP_PORT) {
 io.set('transports', 
 	[
 		//'websocket',        
-		'flashsocket',        
+		//'flashsocket',        
 		'htmlfile',        
 		'xhr-polling',        
 		'jsonp-polling'    

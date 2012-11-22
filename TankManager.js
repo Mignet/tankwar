@@ -43,6 +43,8 @@ Tank.prototype.fire = function() {
 	var data = {uuid:this.uuid,id:uid,x:ox,y:oy,good:this.good,dir:this.ptDir};
 	socket.emit('new bullet',data);
 }
+var tank_pre_x = 0;
+var tank_pre_y = 0;
 Tank.prototype.draw = function(ctx) {
 	if(this.live) {
 		//旋转
@@ -69,8 +71,11 @@ Tank.prototype.draw = function(ctx) {
 		ctx.translate(-this.x, -this.y);
 		this.move();
 		//tank move at every ticks
-		var data = {uuid:myTank.uuid,x:myTank.x,y:myTank.y,dir:myTank.dir,ptDir:myTank.ptDir};
-		socket.emit('tank move',data);
+		//emit move message when position changed!
+		if(tank_pre_x!=myTank.x || tank_pre_y != myTank.y){
+			var data = {uuid:myTank.uuid,x:myTank.x,y:myTank.y,dir:myTank.dir,ptDir:myTank.ptDir};
+			socket.emit('tank move',data);
+		}
 	} else {
 		tanks.remove(this);
 	}
@@ -484,6 +489,8 @@ var down = false;
 var left = false;
 var right = false;
 Tank.prototype.move = function() {
+	tank_pre_x = this.x;
+	tank_pre_y = this.y;
 	if(this.moveType != 0) {
 		if(up) {
 			if(Bg.y <= 0) {

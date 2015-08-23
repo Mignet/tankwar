@@ -1,5 +1,13 @@
 tankwar
-=======
+=========
 
-this is a Tank War online game based on HTML5 and nodejs,
-deployed to tankwar.cloudfoundry.com
+this is a Tank War online game based on HTML5 Canvas and Nodejs+Socket.IO,
+
+==
+'''javascript
+node app.js
+'''
+==
+** Enter to chat
+** WSAD to move
+** mouse left-button to shoot
